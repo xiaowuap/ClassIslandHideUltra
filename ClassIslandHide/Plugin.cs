@@ -38,6 +38,8 @@ public class Plugin : PluginBase
             {
                 File.Delete(Settings.LastGhostExePath);
             }
+
+            Settings.RawExePath = Path.GetFullPath(path);
             PInvoke.CreateHardLink(newPath, Path.GetFullPath(path));
             Settings.LastGhostExePath = newPath;
 
@@ -54,6 +56,12 @@ public class Plugin : PluginBase
             Process.Start(processStartInfo);
 
             Environment.Exit(0);
+            return;
+        }
+        if (Path.GetFullPath(path!) != Settings.RawExePath)
+        {
+            File.Delete(Settings.RawExePath);
+            PInvoke.CreateHardLink(Settings.RawExePath, Path.GetFullPath(path!));
         }
 
         EventManager.RegisterClassHandler(
@@ -75,10 +83,6 @@ public class Plugin : PluginBase
         window.Title = GetRandomString("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-[]\\';\":/.,?><");
 
         var result = PInvoke.SetWindowDisplayAffinity((HWND)new WindowInteropHelper(window).Handle, WINDOW_DISPLAY_AFFINITY.WDA_EXCLUDEFROMCAPTURE);
-        return;
-
-        // 获取一个随机整数
-        
     }
 
     public static string GetRandomString(string chars)

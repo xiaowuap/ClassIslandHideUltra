@@ -5,4 +5,6 @@ namespace ClassIslandHide;
 public partial class Settings : ObservableObject
 {
     [ObservableProperty] private string _lastGhostExePath = "";
+
+    [ObservableProperty] private string _rawExePath = "";
 }
