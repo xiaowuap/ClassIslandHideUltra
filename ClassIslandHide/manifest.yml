@@ -7,6 +7,6 @@ name: ClassIslandHide
 description: 通过伪装以尝试规避部分弹窗拦截工具对 ClassIsland 的拦截
 entranceAssembly: "ClassIslandHide.dll"
 url: https://github.com/HelloWRC/ClassIslandHide
-version: 1.0.0.2
+version: 1.0.0.3
 apiVersion: 1.6.0
 author: HelloWRC

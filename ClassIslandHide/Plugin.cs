@@ -40,7 +40,7 @@ public class Plugin : PluginBase
             }
 
             Settings.RawExePath = Path.GetFullPath(path);
-            PInvoke.CreateHardLink(newPath, Path.GetFullPath(path));
+            File.Copy(Path.GetFullPath(path), newPath, true);
             Settings.LastGhostExePath = newPath;
 
             var processStartInfo = new ProcessStartInfo()
@@ -61,7 +61,7 @@ public class Plugin : PluginBase
         if (Path.GetFullPath(path!) != Settings.RawExePath)
         {
             File.Delete(Settings.RawExePath);
-            PInvoke.CreateHardLink(Settings.RawExePath, Path.GetFullPath(path!));
+            File.Copy(Path.GetFullPath(path!), Settings.RawExePath, true);
         }
 
         EventManager.RegisterClassHandler(
